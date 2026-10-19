@@ -1,0 +1,204 @@
+.navegacion-dia {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.acciones-globales {
+  display: flex;
+  gap: var(--espacio-xs);
+  margin-left: var(--espacio-md);
+}
+
+.selector-dia {
+  padding: 8px 10px;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-sm);
+  background: var(--superficie);
+}
+
+/* ---------- Resumen ---------- */
+.resumen {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: var(--espacio-sm);
+  margin-bottom: var(--espacio-md);
+}
+
+.resumen-tarjeta {
+  display: flex;
+  flex-direction: column;
+  padding: var(--espacio-sm) var(--espacio-md);
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+}
+
+.resumen-numero {
+  font-size: var(--texto-xl);
+  font-weight: 800;
+  color: var(--azul-profundo);
+}
+
+.resumen-texto {
+  color: var(--texto-suave);
+  font-size: var(--texto-sm);
+}
+
+.resumen-destacada {
+  background: var(--azul-principal);
+  border-color: var(--azul-principal);
+}
+
+.resumen-destacada .resumen-numero,
+.resumen-destacada .resumen-texto {
+  color: #ffffff;
+}
+
+/* ---------- Cuerpo: lista + formulario lateral ---------- */
+.agenda-cuerpo {
+  display: grid;
+  gap: var(--espacio-md);
+  align-items: start;
+}
+
+.agenda-cuerpo.con-formulario {
+  grid-template-columns: 1fr 320px;
+}
+
+.formulario-agendar {
+  position: sticky;
+  top: 88px;
+}
+
+.formulario-columna {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-sm);
+}
+
+/* ---------- Citas ---------- */
+.lista-citas {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-sm);
+}
+
+.fila-esqueleto {
+  height: 88px;
+  margin-bottom: var(--espacio-sm);
+}
+
+.cita {
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  gap: var(--espacio-sm);
+  padding: var(--espacio-sm) var(--espacio-md);
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-left: 4px solid var(--azul-principal);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cita:hover {
+  border-color: var(--azul-principal);
+}
+
+.cita-seleccionada {
+  background: var(--azul-claro);
+  border-color: var(--azul-principal);
+  border-left-width: 6px;
+}
+
+.cita-atendida {
+  border-left-color: var(--exito);
+}
+
+.cita-cancelada {
+  border-left-color: var(--neutro);
+  opacity: 0.7;
+}
+
+.cita-hora {
+  font-size: var(--texto-lg);
+  font-weight: 800;
+  color: var(--azul-profundo);
+}
+
+.cita-titulo {
+  font-weight: 700;
+}
+
+.cita-titulo a {
+  color: var(--texto);
+  text-decoration: none;
+}
+
+.cita-titulo a:hover {
+  color: var(--azul-principal);
+  text-decoration: underline;
+}
+
+.cita-especie {
+  font-weight: 400;
+  color: var(--texto-suave);
+}
+
+.cita-detalle {
+  color: var(--texto-suave);
+  font-size: var(--texto-sm);
+}
+
+.cita-notas {
+  margin-top: var(--espacio-xs);
+  padding: var(--espacio-xs) var(--espacio-sm);
+  background: var(--azul-claro);
+  border-radius: var(--radio-sm);
+  font-size: var(--texto-sm);
+}
+
+.cita-lado {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--espacio-xs);
+}
+
+.form-atencion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-xs);
+  margin-top: var(--espacio-sm);
+}
+
+.acciones {
+  display: flex;
+  gap: var(--espacio-xs);
+}
+
+@media (max-width: 1000px) {
+  .agenda-cuerpo.con-formulario {
+    grid-template-columns: 1fr;
+  }
+
+  .formulario-agendar {
+    position: static;
+    order: -1;
+  }
+}
+
+@media (max-width: 560px) {
+  .cita {
+    grid-template-columns: 1fr;
+  }
+
+  .cita-lado {
+    flex-direction: row;
+    align-items: center;
+  }
+}

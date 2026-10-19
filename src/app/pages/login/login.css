@@ -1,0 +1,102 @@
+.login {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+/* Mitad izquierda: la marca */
+.login-marca {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--espacio-lg);
+  background: linear-gradient(150deg, var(--azul-profundo), var(--azul-principal));
+  color: #ffffff;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff;
+  font-size: var(--texto-lg);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.marca-frase {
+  max-width: 16ch;
+  margin-bottom: var(--espacio-md);
+  font-size: var(--texto-2xl);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.marca-lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-xs);
+  opacity: 0.9;
+}
+
+.marca-lista li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Mitad derecha: el formulario */
+.login-formulario {
+  display: grid;
+  place-items: center;
+  padding: var(--espacio-md);
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-sm);
+  width: min(400px, 100%);
+}
+
+.formulario .alerta {
+  margin-bottom: 0;
+}
+
+.campo-clave {
+  position: relative;
+}
+
+.campo-clave input {
+  padding-right: 44px;
+}
+
+.ver-clave {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
+  padding: 6px;
+  border: none;
+  background: transparent;
+  color: var(--texto-suave);
+  cursor: pointer;
+}
+
+.btn-bloque {
+  width: 100%;
+  padding: 12px;
+  font-size: var(--texto-base);
+}
+
+@media (max-width: 800px) {
+  .login {
+    grid-template-columns: 1fr;
+  }
+
+  .login-marca {
+    display: none;
+  }
+}

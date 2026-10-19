@@ -1,0 +1,16 @@
+.celda-acciones {
+  text-align: right;
+}
+
+.sin-resultado {
+  text-align: center;
+  color: var(--texto-suave);
+}
+
+.tabla-esqueleto {
+  height: 240px;
+}
+
+.registro {
+  margin-top: var(--espacio-lg);
+}

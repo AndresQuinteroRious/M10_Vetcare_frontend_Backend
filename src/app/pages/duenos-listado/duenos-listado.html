@@ -1,0 +1,93 @@
+<header class="encabezado-pagina">
+  <div>
+    <h1 class="titulo-pagina">Dueños</h1>
+    <p class="subtitulo">{{ duenos().length }} familias confían en la clínica</p>
+  </div>
+
+  <label class="buscador">
+    <app-icono nombre="buscar" [tamano]="18" />
+    <span class="visualmente-oculto">Buscar dueño</span>
+    <input
+      #inputBusqueda
+      type="search"
+      placeholder="Buscar por nombre o documento"
+      (input)="busqueda.set(inputBusqueda.value)">
+  </label>
+</header>
+
+@if (error()) {
+  <p class="alerta alerta-error" role="alert">{{ error() }}</p>
+}
+
+@if (cargando()) {
+  <div class="esqueleto tabla-esqueleto"></div>
+} @else {
+  <div class="tabla-contenedor">
+    <table class="tabla">
+      <caption class="visualmente-oculto">Dueños registrados en VetCare</caption>
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Documento</th>
+          <th scope="col">Teléfono</th>
+          <th scope="col">Email</th>
+          @if (esAdmin()) {
+            <th scope="col"><span class="visualmente-oculto">Acciones</span></th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (d of duenosFiltrados(); track d.id) {
+          <tr>
+            <td><strong>{{ d.nombre }} {{ d.apellido }}</strong></td>
+            <td>{{ d.documento }}</td>
+            <td>{{ d.telefono || '—' }}</td>
+            <td>{{ d.email || '—' }}</td>
+            @if (esAdmin()) {
+              <td class="celda-acciones">
+                <button
+                  type="button"
+                  class="btn btn-peligro btn-sm"
+                  [attr.aria-label]="'Eliminar a ' + d.nombre + ' ' + d.apellido"
+                  (click)="eliminar(d)">
+                  <app-icono nombre="basura" [tamano]="16" />
+                </button>
+              </td>
+            }
+          </tr>
+        } @empty {
+          <tr>
+            <td [attr.colspan]="esAdmin() ? 5 : 4" class="sin-resultado">No encontramos dueños con esa búsqueda.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}
+
+<details class="plegable registro">
+  <summary>Registrar nuevo dueño</summary>
+  <form class="formulario-grid" (submit)="registrarDueno($event)">
+    <label class="campo">
+      <span>Nombre</span>
+      <input name="nombre" type="text" autocomplete="given-name" required>
+    </label>
+    <label class="campo">
+      <span>Apellido</span>
+      <input name="apellido" type="text" autocomplete="family-name" required>
+    </label>
+    <label class="campo">
+      <span>Documento</span>
+      <input name="documento" type="text" inputmode="numeric" pattern="[0-9]{6,12}" title="Entre 6 y 12 dígitos" required>
+    </label>
+    <label class="campo">
+      <span>Teléfono <small>(opcional)</small></span>
+      <input name="telefono" type="tel" autocomplete="tel">
+    </label>
+    <label class="campo">
+      <span>Email <small>(opcional)</small></span>
+      <input name="email" type="email" autocomplete="email">
+    </label>
+    <button type="submit" class="btn btn-primario">Registrar dueño</button>
+  </form>
+</details>
